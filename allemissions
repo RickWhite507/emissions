@@ -1,0 +1,30 @@
+import pandas as pd
+import plotly.express as px
+
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+
+# Build App
+app = dash.Dash(__name__)
+server = app.server
+
+
+url = 'https://raw.githubusercontent.com/dirkkoolmees/CO2_emissions_per-region/master/CO2%20Emissions%20per%20region%20-%20Sheet2.csv'
+df = pd.read_csv(url)
+
+fig = px.area(df, x = "Year", y = df1.columns)
+
+
+app.layout = html.Div([
+        html.Div([
+        dcc.Graph(id='graph', figure = fig),
+    ],style={'display': 'inline-block', 'width': '100%'})
+        
+])
+
+
+# Run app
+if __name__ == '__main__':
+    app.run_server()
